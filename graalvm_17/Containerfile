@@ -1,0 +1,6 @@
+FROM registry.access.redhat.com/ubi8/ubi@sha256:83068ea81dd02717b8e39b55cdeb2c1b2c9a3db260f01381b991755d44b15073
+RUN dnf install -y gcc glibc-devel zlib-devel libstdc++-static
+RUN curl https://download.oracle.com/graalvm/17/latest/graalvm-jdk-17_linux-x64_bin.tar.gz |tar -xz -C /tmp \
+    && mv /tmp/graalvm-jdk-17.0.11+7.1 /opt/graal17
+ENV JAVA_HOME=/opt/graal17 GRAALVM_HOME=/opt/graal17
+ENV PATH=$JAVA_HOME/bin:$PATH
